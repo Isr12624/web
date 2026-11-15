@@ -13,6 +13,10 @@ on:
   schedule:
     - cron: "0 */6 * * *"
 
+  # Fired by the events repo whenever an event issue is created/edited (see events repo workflow)
+  repository_dispatch:
+    types: [events-updated]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
