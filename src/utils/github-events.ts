@@ -333,8 +333,8 @@ export function parseEventIssue(issue: GitHubIssue): CommunityEvent | null {
   }
 
   // RFC 5545 format strings for Calendar
-  const calStart = startDateIso.replace(/[-:]/g, '').split('.')[0] + 'Z';
-  const calEnd = endDateIso.replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const calStart = new Date(startDateIso).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const calEnd = new Date(endDateIso).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
   return {
     slug,
