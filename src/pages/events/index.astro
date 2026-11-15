@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getDynamicEvents } from '../../data/events';
+import HowToCreateEvent from '../../components/HowToCreateEvent.astro';
 
 const events = await getDynamicEvents();
 ---
@@ -49,6 +50,7 @@ const events = await getDynamicEvents();
     <!-- Events Grid -->
     <section class="events-grid-section">
       <div class="container">
+        {events.length === 0 && <HowToCreateEvent />}
         <div class="events-directory-grid" id="events-grid">
           {events.map((evt) => (
             <article

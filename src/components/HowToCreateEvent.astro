@@ -1,0 +1,22 @@
+---
+// Shown when there are no events (offline fallback or nothing scheduled yet).
+const NEW_EVENT_URL = 'https://github.com/the-penguins-club/events/issues/new?template=event.yml';
+---
+
+<div class="how-to">
+  <h3>No events scheduled right now</h3>
+  <p>Want to host one? Anyone in the community can publish an event, no code needed:</p>
+  <ol>
+    <li>Open the <a href={NEW_EVENT_URL} target="_blank" rel="noopener">New Community Event</a> form (free GitHub account needed).</li>
+    <li>Fill in the title, date &amp; time, location, summary and agenda.</li>
+    <li>Submit the issue. The site rebuilds automatically and your event goes live within a few minutes.</li>
+  </ol>
+  <p class="how-to-note">Edit the issue any time to update the event. Close it to remove it.</p>
+  <a href={NEW_EVENT_URL} class="btn-primary" target="_blank" rel="noopener">Create an event &rarr;</a>
+</div>
+
+<style>
+  .how-to { max-width: 640px; margin: 2rem auto; padding: 1.5rem; border: 1px dashed currentColor; border-radius: 12px; }
+  .how-to ol { padding-left: 1.25rem; margin: 1rem 0; display: grid; gap: .5rem; }
+  .how-to-note { opacity: .7; font-size: .9em; margin-bottom: 1rem; }
+</style>

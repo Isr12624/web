@@ -2,13 +2,14 @@
 // Upcoming events: one featured event plus a dated agenda list.
 // Countdowns are driven by the script below via data-countdown-box / data-u hooks.
 import { getDynamicEvents } from '../data/events';
+import HowToCreateEvent from './HowToCreateEvent.astro';
 
 const events = await getDynamicEvents();
 
 const featuredEvent = events.find((e) => e.isSuper) || events[0];
 
 const upcoming = events
-  .filter((e) => e.slug !== featuredEvent.slug)
+  .filter((e) => e.slug !== featuredEvent?.slug)
   .sort((a, b) => new Date(a.startDateIso).getTime() - new Date(b.startDateIso).getTime());
 
 const tones = { grass: 'mint', hacktoberfest: 'coral', linux: 'sky', git: 'lavender', selfhost: 'lime' } as const;
@@ -32,6 +33,8 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
       </div>
     </div>
 
+    {!featuredEvent && <HowToCreateEvent />}
+    {featuredEvent && <>
     <article class={`featured tone-${toneOf(featuredEvent)}`}>
       <a href={`/events/${featuredEvent.slug}`} class="featured-img" aria-label={`View ${featuredEvent.title}`}>
         <img src={featuredEvent.image} alt="" loading="lazy" />
@@ -104,6 +107,7 @@ const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'n
         </li>
       ))}
     </ol>
+    </>}
   </div>
 </section>
 
