@@ -300,7 +300,8 @@ export function parseEventIssue(issue: GitHubIssue): CommunityEvent | null {
   const cost = getSection('admission fee', 'cost') || '100% Free • Open to All';
   const capacityRaw = getSection('venue capacity', 'capacity');
   const capacity = capacityRaw && !capacityRaw.includes('_No response_') ? capacityRaw : undefined;
-  const registrationUrl = getSection('registration / rsvp url', 'registration_url', 'rsvp') || 'https://t.me/penguinsclubnetwork';
+  // ponytail: take the first URL in the section so "Required: https://..." works
+  const registrationUrl = (sections['registration'] || getSection('registration / rsvp url', 'registration_url', 'registrationurl', 'rsvp')).match(/https?:\/\/\S+/)?.[0] || 'https://t.me/penguinsclubnetwork';
   const imageRaw = getSection('event banner graphic', 'image');
   const image = imageRaw && !imageRaw.includes('_No response_') ? imageRaw : '/images/meetups/meetup-linux-intro.svg';
 
